@@ -1,6 +1,6 @@
 {
   "name": "survive",
-  "app_id": "",
+  "app_id": "d37e8f16",
   "gulpStartupTasks": [
     "sass",
     "watch"
