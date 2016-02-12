@@ -1,0 +1,26 @@
+<ion-view view-title="Crear personaje">
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Nombre</span>
+        <input type="text" ng-model="data.name">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Edad</span>
+        <input type="text"  ng-model="data.age">
+      </label>
+      <label class="item item-input item-select">
+          <div class="input-label">
+            Género
+          </div>
+          <select ng-model="data.gender">
+            <option selected>Hombre</option>
+            <option>Mujer</option>
+          </select>
+      </label>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="createCharacter()">Submit</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

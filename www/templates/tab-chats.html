@@ -2,14 +2,17 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="person in persons" type="item-text-wrap">
-        <img ng-src="/img/{{person.gender}}.png">
+        <img src="img/{{person.gender}}.png">
         <h2>{{person.name}}</h2>
         <p>{{person.age}}</p>
         <p>{{person.gender}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
+        <ion-option-button class="button-assertive" ng-click="viewBackpack(person.id)">
+          <a href=""></a><i class="icon ion-cube"></i>
+        </ion-option-button>
+        <ion-option-button class="button-balanced" ng-click="goSearch()">
+          <i class="icon ion-ios-clock-outline"></i>
         </ion-option-button>
       </ion-item>
     </ion-list>

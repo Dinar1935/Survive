@@ -1,5 +1,19 @@
 angular.module('starter.services', [])
 
+.factory('PersonFactory', function(){
+  var persons = JSON.parse(localStorage.persons);
+  return {
+    get: function(personId) {
+      for (var i = 0; i < persons.length; i++) {
+        if (persons[i].id === personId) {
+          return persons[i];
+        }
+      }
+      return null;
+    }
+  }
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
