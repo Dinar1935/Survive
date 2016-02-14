@@ -10,6 +10,9 @@ angular.module('starter.services', [])
         }
       }
       return null;
+    },
+    eat: function(){
+      return null;
     }
   }
 })

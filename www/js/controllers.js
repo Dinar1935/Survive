@@ -25,6 +25,7 @@ angular.module('starter.controllers', [])
 
 .controller('CreateCtrl', function($scope, $state, Person) {
   $scope.data = {};
+  $scope.data.gender = "male";
 
   $scope.createCharacter = function(){
     var chance = new Chance();
@@ -32,11 +33,7 @@ angular.module('starter.controllers', [])
     p.id = chance.guid();
     p.name = $scope.data.name;
     p.age = $scope.age;
-    if ($scope.data.gender == "Hombre") {
-      p.gender = "male";
-    }else{
-      p.gender = "female";
-    }
+    p.gender = $scope.data.gender;
     localStorage.clear();
     localStorage.persons = JSON.stringify([p]);
     $state.go('tab.dash');
@@ -89,9 +86,15 @@ function generatePersons(){
   $scope.goSearch = function(){
     console.log('Going to search, Create random');
     $scope.persons = JSON.parse(localStorage.persons);
-    var catched = FOOD[getRandomIntInclusive(0, (FOOD.length - 1))];
-    console.log('Find ', catched);
-    $scope.persons[0].backpack.unshift(catched);
+    var comidaEncontrada = FOOD[getRandomIntInclusive(0, (FOOD.length - 1))];
+    console.log('Find ', comidaEncontrada);
+    var mochila = $scope.persons[0].backpack.food[0];
+    var alimentoAumentar = mochila[comidaEncontrada.id];
+    console.log('La comida en la mochila es: ', $scope.persons[0].backpack.food[0]);
+    console.log('Vamos a aumentar: ', alimentoAumentar);
+    alimentoAumentar++;
+    mochila[comidaEncontrada.id] = alimentoAumentar;
+    $scope.persons[0].backpack.food[0] = mochila;
     localStorage.persons = JSON.stringify($scope.persons);
   };
   $scope.viewBackpack = function(personId){
@@ -104,8 +107,10 @@ function generatePersons(){
   $scope.person = PersonFactory.get($stateParams.personId);
 })
 
-.controller('BackpackDetailCtrl', function($scope, $stateParams, PersonFactory) {
-  $scope.backpack = JSON.parse(localStorage.persons)[0].backpack;
+.controller('BackpackDetailCtrl', function($scope, $stateParams, FOOD ) {
+  $scope.backpack = JSON.parse(localStorage.persons)[0].backpack.food[0];
+  console.log('Detalle de mochila:', $scope.backpack);
+  $scope.FOOD = FOOD;
 })
 
 .controller('AccountCtrl', function($scope) {
